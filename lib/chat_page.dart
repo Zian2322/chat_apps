@@ -23,14 +23,17 @@ class ChatPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          // Expanded widget should wrap ListView to ensure it takes available space
           Expanded(
-            child: ListView(
-              children: [
-            ChatBubble(alignment: Alignment.centerLeft,message: "Hi bro!"),
-                ChatBubble(alignment: Alignment.centerRight, message: "wassup"),
-
-              ],
+            child: ListView.builder(
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return ChatBubble(
+                  alignment: index % 2 == 0
+                      ? Alignment.centerLeft
+                      : Alignment.centerRight,
+                  message: "Hi bro!",
+                );
+              },
             ),
           ),
           ChatInput(),
