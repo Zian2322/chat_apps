@@ -54,13 +54,25 @@ class LoginPage extends StatelessWidget {
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.w300),
                 ),
               ),
-              TextButton(
-                onPressed: () {
-                  print('pressed on the url!');
+              InkWell(
+                splashColor: Colors.red,
+                onDoubleTap: (){
+                  print('double tapped!');
                 },
-                child: const Text('https://www.google.com.ph/'),
+                onLongPress: (){
+                  print('onLongpressed');
+                },
+                onTap: (){
+                  //todo: Navigate to browser
+                  print('linked clicked!');
+                },
+                child: Column(
+                  children: [
+                    Text('Find us on'),
+                    Text('https://www.google.com.ph/'),
+                  ],
+                ),
               ),
-              const SizedBox(height: 20),
             ],
           ),
         ),
