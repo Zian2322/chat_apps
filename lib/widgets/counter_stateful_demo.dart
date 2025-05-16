@@ -44,7 +44,7 @@ class _CounterStatefulState extends State<CounterStateful> {
         ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: widget.buttonColor,
-        child: Icon(Icons.add),
+        child: Icon(Icons.message),
         onPressed: () {
           increment();
         },
