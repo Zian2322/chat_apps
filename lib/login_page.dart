@@ -63,8 +63,8 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              Image.network(
-                'https://png.pngtree.com/png-vector/20190919/ourmid/pngtree-user-login-or-authenticate-icon-on-gray-background-flat-icon-ve-png-image_1742031.jpg',
+              Image.asset(
+                'assets/illustration.png',
                 height: 200,
               ),
               const SizedBox(height: 20),
