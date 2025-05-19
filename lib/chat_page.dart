@@ -1,14 +1,15 @@
+import 'package:chat_apps/models/chat_message_entity.dart';
 import 'package:chat_apps/widgets/chat_bubble.dart';
 import 'package:chat_apps/widgets/chat_input.dart';
 import 'package:flutter/material.dart';
 
 class ChatPage extends StatelessWidget {
-
-  const ChatPage({Key? key}) : super(key : key);
+  const ChatPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final username = ModalRoute.of(context)!.settings.arguments as String;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -31,10 +32,14 @@ class ChatPage extends StatelessWidget {
               itemCount: 10,
               itemBuilder: (context, index) {
                 return ChatBubble(
-                  alignment: index % 2 == 0
-                      ? Alignment.centerLeft
-                      : Alignment.centerRight,
-                  message: "Hi bro!",
+                  alignment:
+                  index % 2 == 0 ? Alignment.centerLeft : Alignment.centerRight,
+                  entity: ChatMessageEntity(
+                    id: '1234',
+                    text: 'Hello this is mark!',
+                    createdAt: DateTime.now().millisecondsSinceEpoch,
+                    author: Author(userName: 'mark45'),
+                  ),
                 );
               },
             ),
