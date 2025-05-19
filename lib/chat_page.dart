@@ -1,31 +1,40 @@
+import 'dart:convert'; // <-- Add this
 import 'package:chat_apps/models/chat_message_entity.dart';
 import 'package:chat_apps/widgets/chat_bubble.dart';
 import 'package:chat_apps/widgets/chat_input.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-class ChatPage extends StatelessWidget {
+class ChatPage extends StatefulWidget {
   ChatPage({Key? key}) : super(key: key);
 
-  final List<ChatMessageEntity> _messages = [
-    ChatMessageEntity(
-      text: 'First text',
-      id: '1',
-      createdAt: 2131231442,
-      author: Author(userName: 'mark45'),
-    ),
-    ChatMessageEntity(
-      text: 'Second text',
-      id: '2',
-      createdAt: 2131231443,
-      author: Author(userName: 'jane'),
-    ),
-    ChatMessageEntity(
-      text: 'Third text',
-      id: '3',
-      createdAt: 2131231444,
-      author: Author(userName: 'mark45'),
-    ),
-  ];
+  @override
+  State<ChatPage> createState() => _ChatPageState();
+}
+
+class _ChatPageState extends State<ChatPage> {
+  List<ChatMessageEntity> _messages = []; // removed 'final'
+
+  Future<void> _loadInitialMessages() async {
+    final response = await rootBundle.loadString('assets/mock_messages.json');
+    final List<dynamic> decodedList = jsonDecode(response) as List;
+
+    final List<ChatMessageEntity> chatMessages = decodedList.map((item) {
+      return ChatMessageEntity.fromJson(item);
+    }).toList();
+
+    print(chatMessages.length);
+
+    setState(() {
+      _messages = chatMessages;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadInitialMessages();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +62,7 @@ class ChatPage extends StatelessWidget {
               itemCount: _messages.length,
               itemBuilder: (context, index) {
                 return ChatBubble(
-                  alignment: _messages[index].author.userName == 'mark45'
+                  alignment: _messages[index].author.userName == username
                       ? Alignment.centerRight
                       : Alignment.centerLeft,
                   entity: _messages[index],
