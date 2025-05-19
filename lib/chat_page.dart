@@ -30,6 +30,12 @@ class _ChatPageState extends State<ChatPage> {
     });
   }
 
+  onMessageSent(ChatMessageEntity entity){
+    _messages.add(entity);
+    setState(() {
+
+    });
+  }
   @override
   void initState() {
     super.initState();
@@ -70,7 +76,7 @@ class _ChatPageState extends State<ChatPage> {
               },
             ),
           ),
-          ChatInput(),
+          ChatInput(onSubmit: onMessageSent),
         ],
       ),
     );
