@@ -1,3 +1,5 @@
+import 'package:chat_apps/utils/textfield_styles.dart';
+import 'package:chat_apps/widgets/login_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_apps/chat_page.dart';
 
@@ -5,20 +7,24 @@ class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
   final _formkey = GlobalKey<FormState>();
+  final userNameController = TextEditingController();
+  final passwordController = TextEditingController();
+
   void loginUser(context) {
-    if (_formkey.currentState!=null && _formkey.currentState!.validate()) {
+    if (_formkey.currentState != null && _formkey.currentState!.validate()) {
       print(userNameController.text);
       print(passwordController.text);
 
-      Navigator.pushReplacementNamed(context, '/chat', arguments: '${userNameController.text}');
+      Navigator.pushReplacementNamed(
+        context,
+        '/chat',
+        arguments: '${userNameController.text}',
+      );
       print('login successful!');
     } else {
       print('not successful!');
     }
   }
-
-  final userNameController = TextEditingController();
-  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -60,12 +66,13 @@ class LoginPage extends StatelessWidget {
                 'https://png.pngtree.com/png-vector/20190919/ourmid/pngtree-user-login-or-authenticate-icon-on-gray-background-flat-icon-ve-png-image_1742031.jpg',
                 height: 200,
               ),
-
+              const SizedBox(height: 20),
               Form(
                 key: _formkey,
                 child: Column(
                   children: [
-                    TextFormField(
+                    LoginTextField(
+                      hintText: "Enter your username",
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "Please type your username";
@@ -74,33 +81,18 @@ class LoginPage extends StatelessWidget {
                         }
                         return null;
                       },
-
                       controller: userNameController,
-                      decoration: InputDecoration(
-                        hintText: 'Add your username',
-                        hintStyle: TextStyle(color: Colors.blueGrey),
-                        border: OutlineInputBorder()
-                      ),
+                    ),
+                    const SizedBox(height: 24),
+                    LoginTextField(
+                      hasAsterisk: true,
+                      controller: passwordController,
+                      hintText: "Enter your password",
                     ),
                   ],
                 ),
               ),
-
-              SizedBox(
-                height: 24,
-              ),
-              TextFormField(
-                controller: passwordController,
-                obscureText: true,
-                decoration: InputDecoration(
-                    hintText: 'Type your password',
-                    hintStyle: TextStyle(color: Colors.blueGrey),
-                    border: OutlineInputBorder()
-                ),
-              ),
-              SizedBox(
-                height: 24,
-              ),
+              const SizedBox(height: 24),
               ElevatedButton(
                 onPressed: () {
                   loginUser(context);
@@ -112,17 +104,16 @@ class LoginPage extends StatelessWidget {
               ),
               InkWell(
                 splashColor: Colors.red,
-                onDoubleTap: (){
+                onDoubleTap: () {
                   print('double tapped!');
                 },
-                onLongPress: (){
+                onLongPress: () {
                   print('onLongpressed');
                 },
-                onTap: (){
-                  //todo: Navigate to browser
+                onTap: () {
                   print('linked clicked!');
                 },
-                child: Column(
+                child: const Column(
                   children: [
                     Text('Find us on'),
                     Text('https://www.google.com.ph/'),
