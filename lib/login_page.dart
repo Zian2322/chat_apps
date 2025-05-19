@@ -3,6 +3,7 @@ import 'package:chat_apps/utils/textfield_styles.dart';
 import 'package:chat_apps/widgets/login_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_apps/chat_page.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -10,6 +11,7 @@ class LoginPage extends StatelessWidget {
   final _formkey = GlobalKey<FormState>();
   final userNameController = TextEditingController();
   final passwordController = TextEditingController();
+  final _mainUrl = "https://www.google.com.ph/";
 
   void loginUser(context) {
     if (_formkey.currentState != null && _formkey.currentState!.validate()) {
@@ -93,7 +95,7 @@ class LoginPage extends StatelessWidget {
                   ],
                 ),
               ),
-            verticalSpacing(24),
+              verticalSpacing(24),
               ElevatedButton(
                 onPressed: () {
                   loginUser(context);
@@ -111,15 +113,19 @@ class LoginPage extends StatelessWidget {
                 onLongPress: () {
                   print('onLongpressed');
                 },
-                onTap: () {
+                onTap: () async {
                   print('linked clicked!');
+                  if (!await launch(_mainUrl)) {
+                    throw 'Could not launch this!';
+                  }
                 },
-                child: const Column(
+                child: Column(
                   children: [
-                    Text('Find us on'),
-                    Text('https://www.google.com.ph/'),
+                    const Text('Find us on'),
+                    Text(_mainUrl), 
                   ],
                 ),
+
               ),
             ],
           ),
