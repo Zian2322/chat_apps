@@ -25,13 +25,13 @@
     "id": "10002",
     "text": "Good morning sad lovee!"
   },
-
   {
     "author": {
       "username": "mark45"
     },
     "createdAt": 1598438499000,
     "id": "10002",
-    "text": "eat na!"
+    "text": "eat na!",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Hamburger_%2812164386105%29.jpg"
   }
 ]

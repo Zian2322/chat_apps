@@ -1,4 +1,4 @@
-import 'dart:convert'; // <-- Add this
+import 'dart:convert';
 import 'package:chat_apps/models/chat_message_entity.dart';
 import 'package:chat_apps/widgets/chat_bubble.dart';
 import 'package:chat_apps/widgets/chat_input.dart';
@@ -62,7 +62,7 @@ class _ChatPageState extends State<ChatPage> {
               itemCount: _messages.length,
               itemBuilder: (context, index) {
                 return ChatBubble(
-                  alignment: _messages[index].author.userName == username
+                  alignment: _messages[index].author.userName == 'mark45'
                       ? Alignment.centerRight
                       : Alignment.centerLeft,
                   entity: _messages[index],
