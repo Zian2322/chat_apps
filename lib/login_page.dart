@@ -3,6 +3,7 @@ import 'package:chat_apps/utils/textfield_styles.dart';
 import 'package:chat_apps/widgets/login_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_apps/chat_page.dart';
+import 'package:social_media_buttons/social_media_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LoginPage extends StatelessWidget {
@@ -33,7 +34,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(24.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -105,6 +106,7 @@ class LoginPage extends StatelessWidget {
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
                 ),
               ),
+              const SizedBox(height: 20),
               InkWell(
                 splashColor: Colors.red,
                 onDoubleTap: () {
@@ -114,7 +116,7 @@ class LoginPage extends StatelessWidget {
                   print('onLongpressed');
                 },
                 onTap: () async {
-                  print('linked clicked!');
+                  print('link clicked!');
                   if (!await launch(_mainUrl)) {
                     throw 'Could not launch this!';
                   }
@@ -122,10 +124,22 @@ class LoginPage extends StatelessWidget {
                 child: Column(
                   children: [
                     const Text('Find us on'),
-                    Text(_mainUrl), 
+                    Text(_mainUrl),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SocialMediaButton.twitter(
+                          color: Colors.blue,
+                          url: "https://twitter.com",
+                        ),
+                        SocialMediaButton.facebook(
+                          color: Colors.blue,
+                          url: "https://facebook.com",
+                        ),
+                      ],
+                    ),
                   ],
                 ),
-
               ),
             ],
           ),
