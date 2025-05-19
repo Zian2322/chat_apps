@@ -4,7 +4,28 @@ import 'package:chat_apps/widgets/chat_input.dart';
 import 'package:flutter/material.dart';
 
 class ChatPage extends StatelessWidget {
-  const ChatPage({Key? key}) : super(key: key);
+  ChatPage({Key? key}) : super(key: key);
+
+  final List<ChatMessageEntity> _messages = [
+    ChatMessageEntity(
+      text: 'First text',
+      id: '1',
+      createdAt: 2131231442,
+      author: Author(userName: 'mark45'),
+    ),
+    ChatMessageEntity(
+      text: 'Second text',
+      id: '2',
+      createdAt: 2131231443,
+      author: Author(userName: 'jane'),
+    ),
+    ChatMessageEntity(
+      text: 'Third text',
+      id: '3',
+      createdAt: 2131231444,
+      author: Author(userName: 'mark45'),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -29,17 +50,13 @@ class ChatPage extends StatelessWidget {
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: 10,
+              itemCount: _messages.length,
               itemBuilder: (context, index) {
                 return ChatBubble(
-                  alignment:
-                  index % 2 == 0 ? Alignment.centerLeft : Alignment.centerRight,
-                  entity: ChatMessageEntity(
-                    id: '1234',
-                    text: 'Hello this is mark!',
-                    createdAt: DateTime.now().millisecondsSinceEpoch,
-                    author: Author(userName: 'mark45'),
-                  ),
+                  alignment: _messages[index].author.userName == 'mark45'
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
+                  entity: _messages[index],
                 );
               },
             ),
