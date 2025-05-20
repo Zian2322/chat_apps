@@ -8,7 +8,7 @@ class PixelfordImage {
   String author;
   String url;
 
-  @JsonKey(name: 'url_full_size')
+  @JsonKey(name: 'download_url')
   String urlFullSize;
 
   PixelfordImage(
@@ -18,7 +18,7 @@ class PixelfordImage {
         required this.urlFullSize});
 
   factory PixelfordImage.fromJson(Map<String, dynamic> json) =>
-      _$PixelformImageFromJson(json);
+      _$PixelfordImageFromJson(json);
 
-  Map<String, dynamic> toJson() => _$PixelformImageToJson(this);
+  Map<String, dynamic> toJson() => _$PixelfordImageToJson(this);
 }
