@@ -15,8 +15,9 @@ class ChatApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Chat App!!!!",
+      title: "Chat App!!!!", 
       theme: ThemeData(
+          canvasColor: Colors.transparent,
         primarySwatch: BrandColor.primaryColor,appBarTheme: AppBarTheme(backgroundColor: Colors.blue, foregroundColor: Colors.black)
       ),
       home: LoginPage(),
