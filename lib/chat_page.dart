@@ -12,7 +12,9 @@ class ChatPage extends StatefulWidget {
   State<ChatPage> createState() => _ChatPageState();
 }
 
+
 class _ChatPageState extends State<ChatPage> {
+
   List<ChatMessageEntity> _messages = []; // removed 'final'
 
   Future<void> _loadInitialMessages() async {
@@ -33,7 +35,7 @@ class _ChatPageState extends State<ChatPage> {
       print('done');
     });
 
-    print('Something')
+    print('Something');
   }
 
   onMessageSent(ChatMessageEntity entity){
