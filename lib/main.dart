@@ -1,12 +1,16 @@
 import 'package:chat_apps/chat_page.dart';
 import 'dart:ui';
 import 'package:chat_apps/login_page.dart';
+import 'package:chat_apps/services/auth_service.dart';
 import 'package:chat_apps/utils/brand_color.dart';
 import 'package:chat_apps/widgets/counter_stateful_demo.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const ChatApp());
+  runApp(Provider(create: (BuildContext context) => AuthService(),
+  child: const ChatApp(),
+  ));
 }
 
 class ChatApp extends StatelessWidget {
